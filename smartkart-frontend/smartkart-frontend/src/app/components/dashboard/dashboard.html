@@ -1,0 +1,63 @@
+
+  <div class="container py-4" style="background: linear-gradient(to right, #ffe1e1, #fff9f1);">
+    <h4 class="fw-bold mb-4">Inspiration for your first order</h4>
+    <div class="d-flex gap-4 overflow-auto pb-3" style="scrollbar-width: none;">
+      <div
+        *ngFor="let cat of categories"
+        class="text-center flex-shrink-0"
+        style="width: 110px;">
+        <div
+         [routerLink]="['/product']"
+         class="rounded-circle shadow mx-auto" style="width: 100px; height: 100px; overflow: hidden;"> 
+          <img
+            [src]="'images/' + cat.categoryName + '.jpg'"
+            [alt]="cat.categoryName"
+            class="img-fluid w-100 h-100 object-fit-cover"
+          />
+        </div>
+        <div class="mt-2 fw-medium text-dark small">{{cat.categoryName}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- [queryParams]="{ category: cat.id }" -->
+
+  <div id="promoCarousel" class="carousel slide carousel-fade mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner rounded-4 shadow" style="overflow: hidden;">
+      <div class="carousel-item active position-relative">
+        <img src="images/offer4.jpg" class="d-block w-100" alt="Offer 1">
+        <div class="carousel-caption d-none d-md-block text-start">
+          <h5 class="fw-bold">Special Offer Just for You</h5>
+          <p>Get 50% off on selected items. Hurry, ends soon!</p>
+          <a class="btn btn-sm btn-light text-primary fw-bold" [routerLink]="['/offers']">Shop Now</a>
+        </div>
+      </div>
+      <div class="carousel-item position-relative">
+        <img src="images/offer5.jpg" class="d-block w-100" alt="Offer 2">
+        <div class="carousel-caption d-none d-md-block text-start">
+          <h5 class="fw-bold">New Arrivals</h5>
+          <p>Freshly baked pastries now available.</p>
+          <a class="btn btn-sm btn-light text-primary fw-bold" [routerLink]="['/new-arrivals']">Explore</a>
+        </div>
+      </div>
+      <div class="carousel-item position-relative">
+        <img src="images/offer.jpg" class="d-block w-100" alt="Offer 3">
+        <div class="carousel-caption d-none d-md-block text-start">
+          <h5 class="fw-bold">Celebrate with Cakes</h5>
+          <p>Order customized cakes for every occasion.</p>
+          <a class="btn btn-sm btn-light text-primary fw-bold" [routerLink]="['/cakes']">Order Now</a>
+        </div>
+      </div>
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  
+  
+
+  

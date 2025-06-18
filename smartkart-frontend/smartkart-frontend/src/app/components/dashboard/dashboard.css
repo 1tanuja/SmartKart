@@ -1,0 +1,35 @@
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Improve image fit */
+  .object-fit-cover {
+    object-fit: cover;
+  }
+  
+  /* Smooth hover effect */
+  .flex-shrink-0:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+  
+
+  .carousel-inner img {
+    object-fit: cover;
+    height: 300px;
+    filter: brightness(80%);
+  }
+  
+  .carousel-caption {
+    bottom: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    max-width: 300px;
+  }
+  
+  .carousel-fade .carousel-item {
+    transition: opacity 1.5s ease-in-out;
+  }
+  

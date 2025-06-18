@@ -1,0 +1,130 @@
+/* .custom-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  
+  .product-card-small {
+    height: 300px;
+    width: 180px;
+    font-size: 0.9rem;
+  }
+
+  .image-wrapper-small{
+    height: 400px;
+    width: 180px;
+  }
+
+  .card-body{
+    height: 100px;
+    width: 250px;
+  } 
+
+  @media (max-width: 1200px) {
+    .custom-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .custom-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .custom-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .custom-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .product-card-small .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card-small .card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  
+  .product-img-small {
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card-small .card:hover .product-img-small {
+    transform: scale(1.05);
+  }
+  
+
+  .product-card-small {
+  height: 100%;
+  min-height: 280px;
+  font-size: 0.85rem;
+}
+
+/* Image wrapper – compact height */
+.image-wrapper-small {
+    height: 120px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  .product-img-small {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* No image fallback */
+  .no-image-small {
+    height: 100%;
+    background-color: #e9ecef;
+    font-size: 1.2rem;
+  }
+  
+  /* Button sizing */
+  .card-footer .btn {
+    padding: 2px 6px;
+    font-size: 0.75rem;
+  }
+  
+  /* Truncate text cleanly */
+  .text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  
+  /* Base hover effect */
+.product-card-small {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .product-card-small:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    background-color: #fdfdfd;
+  }
+  
+  /* Optional: slight darkening for footer buttons on hover */
+  .card-footer .btn:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Image hover zoom effect (optional) */
+  .image-wrapper-small img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
