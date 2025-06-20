@@ -7,7 +7,8 @@
         class="text-center flex-shrink-0"
         style="width: 110px;">
         <div
-         [routerLink]="['/product']"
+         [routerLink]="['/dashboard']"
+         [queryParams]="{ categoryId: cat.id }"
          class="rounded-circle shadow mx-auto" style="width: 100px; height: 100px; overflow: hidden;"> 
           <img
             [src]="'images/' + cat.categoryName + '.jpg'"
@@ -57,6 +58,29 @@
       <span class="carousel-control-next-icon"></span>
     </button>
   </div>
+
+  <div class="container my-5" #productSection id="productSection">
+    <h2 class="text-center mb-4">Products For You</h2>
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let product of userProducts">
+        <div class="product-card">
+          <div class="product-info">
+            <h5> {{product.name}} </h5>
+            <p class="price">
+              ₹ {{product.offerPrice}}  <span class="old-price">₹ {{product.originalPrice}} </span>
+            </p>
+          </div>
+          <img *ngIf="product.productimages.length > 0"
+          [src]="product.productimages[0].url"
+          alt="Product Image"/>
+          <div class="offer-tag">
+            <i class="fas fa-tag"></i>{{product.discountPercent}} % Off
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   
   
 
