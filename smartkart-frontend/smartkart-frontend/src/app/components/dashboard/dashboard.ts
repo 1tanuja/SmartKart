@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { Category } from '../../model/product.model';
 import { ProductService } from '../../service/product-service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UserProductService } from '../../service/user-product-service';
 import { UserProduct } from '../../model/userProduct.model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -36,6 +36,7 @@ export class Dashboard implements OnInit{
     this.route.queryParams.subscribe(params => {
       const categoryId = params['categoryId'];
       const searchQuery = params['search'];
+      this.shouldScrollToProducts = true;
       if(searchQuery){
         this.shouldScrollToProducts=true;
         this.searchProductsByName(searchQuery);
@@ -46,15 +47,14 @@ export class Dashboard implements OnInit{
         this.loadProducts();
       }
     });
-    // this.loadProducts();
   }
   
 
   scrollToProductSection(): void {
-    this.cdr.detectChanges(); // Ensure view is updated before scrolling
+    this.cdr.detectChanges();
     setTimeout(() => {
       if (this.productSection?.nativeElement) {
-        const yOffset = -80; // adjust this based on your navbar height (e.g., 60px or 80px)
+        const yOffset = -80;
         const elementPosition = this.productSection.nativeElement.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition + yOffset;
   
@@ -63,8 +63,9 @@ export class Dashboard implements OnInit{
           behavior: 'smooth'
         });
       }
-    }, 100);
+    }, 50);
   }
+  
 
   loadCategories(): void{
     this.productServices.getAllCategories().subscribe({
@@ -78,63 +79,101 @@ export class Dashboard implements OnInit{
     });
   }
 
-  loadProducts():void{
+  loadProducts():void  {
     this.userProductService.getAllProducts().subscribe(
       (data) => {
-        this.userProducts=data;
-        this.userProducts.forEach( product => 
-        {
-          this.loadProductImages(product);
+        this.userProducts = data;
+  
+        const total = this.userProducts.length;
+        if (total === 0 && this.shouldScrollToProducts) {
+          this.scrollToProductSection();
+          this.shouldScrollToProducts = false;
         }
-        );
-        this.scrollToProductSection();
+  
+        let loaded = 0;
+        this.userProducts.forEach(product => {
+          this.loadProductImages(product, () => {
+            loaded++;
+            if (loaded === total && this.shouldScrollToProducts) {
+              this.scrollToProductSection();
+              this.shouldScrollToProducts = false;
+            }
+          });
+        });
+      }
+    );
+  }
+
+  loadProductImages(product: UserProduct, onComplete?: () => void) {
+    this.userProductService.loadProductImages(product.id).subscribe(
+      (imageBlob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(imageBlob);
+        reader.onload = () => {
+          product.productimages = [
+            {
+              file: new File([imageBlob], product.name, { type: imageBlob.type }),
+              url: this.sanitizer.bypassSecurityTrustUrl(reader.result as string)
+            }
+          ];
+          if (onComplete) {
+            onComplete(); // Trigger once image is loaded
+          }
+        };
       }
     );
   }
 
 
-  loadProductImages(product:UserProduct){
-      this.userProductService.loadProductImages(product.id).subscribe(
-        (imageBlob) => {
-          const reader=new FileReader();
-          reader.readAsDataURL(imageBlob);
-          reader.onload= ()=>{
-            product.productimages=[
-              {
-                file: new File([imageBlob], product.name, { type: imageBlob.type }),
-                url: this.sanitizer.bypassSecurityTrustUrl(reader.result as string)
-              }
-            ]
+    loadProductsByCategory(categoryId: any) {
+      this.userProductService.getProductsByCategory(categoryId).subscribe(
+        (data) => {
+          this.userProducts = data;
+    
+          const total = this.userProducts.length;
+          if (total === 0 && this.shouldScrollToProducts) {
+            this.scrollToProductSection();
+            this.shouldScrollToProducts = false;
           }
+    
+          let loaded = 0;
+          this.userProducts.forEach(product => {
+            this.loadProductImages(product, () => {
+              loaded++;
+              if (loaded === total && this.shouldScrollToProducts) {
+                this.scrollToProductSection();
+                this.shouldScrollToProducts = false;
+              }
+            });
+          });
         }
       );
     }
 
-
-    loadProductsByCategory(categoryId: any){
-      this.userProductService.getProductsByCategory(categoryId).subscribe(
-        (data) => {
-          this.userProducts=data;
-          this.userProducts.forEach( product => 
-            {
-              this.loadProductImages(product);
-            }
-            );
-          this.scrollToProductSection();  
-        }
-      )
-    }
-
-    searchProductsByName(searchQuery: any){
+    searchProductsByName(searchQuery: any) {
       this.userProductService.seachProducts(searchQuery).subscribe(
-        (data)=>{
-          this.userProducts=data;
-          this.userProducts.forEach( product =>
-          {this.loadProductImages(product);}
-          );
-          this.scrollToProductSection();
+        (data) => {
+          this.userProducts = data;
+    
+          const total = this.userProducts.length;
+          if (total === 0 && this.shouldScrollToProducts) {
+            this.scrollToProductSection();
+            this.shouldScrollToProducts = false;
+          }
+    
+          let loaded = 0;
+          this.userProducts.forEach(product => {
+            this.loadProductImages(product, () => {
+              loaded++;
+              if (loaded === total && this.shouldScrollToProducts) {
+                this.scrollToProductSection();
+                this.shouldScrollToProducts = false;
+              }
+            });
+          });
         }
-      )
+      );
     }
+    
 
 }

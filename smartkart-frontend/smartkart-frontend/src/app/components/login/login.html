@@ -24,7 +24,7 @@
       <div class="tab-content" id="pills-tabContent">
         <!-- Login Form -->
         <div class="tab-pane fade show active" id="login" role="tabpanel">
-          <form (ngSubmit)="onLogin()">
+          <form #loginForm="ngForm" (ngSubmit)="onLogin()">
             <div class="mb-3">
               <label class="form-label">Email</label>
               <div class="input-group">
@@ -47,7 +47,7 @@
   
         <!-- Registration Form -->
         <div class="tab-pane fade" id="register" role="tabpanel">
-          <form (ngSubmit)="onRegister()">
+          <form #registerForm="ngForm" (ngSubmit)="onRegister()">
             <div class="mb-3">
               <label class="form-label">Full Name</label>
               <div class="input-group">

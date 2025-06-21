@@ -1,8 +1,8 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../service/user';
 import { error } from 'console';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, NgForm} from '@angular/forms';
 import { UserLogin, UserRegister } from '../../model/user.model';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,11 @@ import { Router } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login {
+export class Login{
+    @ViewChild('loginForm') loginForm!: NgForm;
+    @ViewChild('registerForm') registerForm!: NgForm;
+
+
    registerData:UserRegister =new UserRegister();
    loginData:UserLogin =new UserLogin();
    router = inject(Router);
@@ -24,10 +28,12 @@ export class Login {
       next: res =>{
         console.log('Registration Successful',res);
         alert('Registered Successfully!')
+        this.registerForm.resetForm();
       },
       error: err=>{
         console.log('Registration Failed',err);
-        alert('Registration Failed')
+        alert('Registration Failed');
+        this.registerForm.resetForm();
       }
     });
    }
@@ -48,7 +54,12 @@ export class Login {
       }
       
     },error=> {
-      alert(error.error);
+      console.log(error);
+      alert(error.error || "Invalid Credentials");
+      this.loginData = { email: '', password: '' };
+      if (this.loginForm) {
+        this.loginForm.resetForm();  // this will reset the form view
+      }
     }
     );
    }
