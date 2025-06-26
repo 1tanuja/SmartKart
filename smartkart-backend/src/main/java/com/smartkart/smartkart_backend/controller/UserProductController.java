@@ -36,5 +36,10 @@ public class UserProductController {
         return ResponseEntity.ok(userProductService.searchProducts(query));
     }
 
+    @GetMapping("/getProductById/{id}")
+    public ResponseEntity<UserProductDto> getProductById(@PathVariable Long id){
+        return ResponseEntity.ok(userProductService.getProductById(id));
+    }
+
 
 }

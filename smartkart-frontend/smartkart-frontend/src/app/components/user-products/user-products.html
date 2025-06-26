@@ -1,49 +1,39 @@
-<div class="container my-5">
-    <h2 class="text-center mb-4">Top Mobile Deals</h2>
-    <div class="row g-4">
-      <!-- Product Card -->
-      <div class="col-md-4">
-        <div class="product-card">
-          <div class="product-info">
-            <h6 class="text-primary">motorola</h6>
-            <h5>moto g85 (8GB)</h5>
-            <p>3D Curved pOLED Display</p>
-            <p class="price">₹14,999 <span class="old-price">₹20,999</span></p>
-          </div>
-          <img src="images/Mobiles.jpg" alt="Moto G85">
-          <div class="offer-tag"><i class="fas fa-scissors"></i> Offer</div>
-        </div>
+<div class="container my-5 product-detail-container" *ngIf="!loading && product?.productimages?.length">
+  <div class="row align-items-center p-4">
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+      <img *ngIf="product.productimages?.length"
+           [src]="product.productimages[0].url"
+           class="img-fluid product-image"
+           alt="{{ product.name }}">
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="fw-bold text-gradient">{{ product.name }}</h2>
+
+      <p class="fs-5">
+        <span class="product-info-title">Price:</span>
+        ₹ <span class="text-success fs-4 fw-semibold">{{ product.offerPrice }}</span>
+        <span class="text-muted text-decoration-line-through ms-2 fs-6">₹ {{ product.originalPrice }}</span>
+      </p>
+
+      <p class="mb-3">
+        <span class="product-info-title">Discount:</span>
+        <span class="badge bg-danger shadow-sm">{{ product.discountPercent }}% OFF</span>
+      </p>
+
+      <p class="text-muted">
+        <span class="product-info-title">Description:</span> {{ product.description }}
+      </p>
+
+      <div class="d-flex gap-3 mt-4">
+        <button class="btn btn-success px-4 py-2 shadow-sm" (click)="buyNow(product)">
+          <i class="bi bi-bag-check-fill me-2"></i> Buy Now
+        </button>
+        <button class="btn btn-primary px-4 py-2 shadow-sm" (click)="addProductToCart()">
+          <i class="bi bi-cart-plus-fill me-2" ></i> Add to Cart
+        </button >
       </div>
-  
-      <!-- Product Card -->
-      <div class="col-md-4">
-        <div class="product-card">
-          <div class="product-info">
-            <h6 class="text-warning">realme</h6>
-            <h5>realme P3X 5G</h5>
-            <p>6000mAh + 45W Fast Charge</p>
-            <p class="price">₹12,999 <span class="old-price">₹16,999</span></p>
-          </div>
-          <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/z/i/u/-original-imahyyt4cswhzetg.jpeg" alt="realme P3X">
-          <div class="offer-tag"><i class="fas fa-scissors"></i> Offer</div>
-        </div>
-      </div>
-  
-      <!-- Product Card -->
-      <div class="col-md-4">
-        <div class="product-card">
-          <div class="product-info">
-            <h6 class="text-info">vivo</h6>
-            <h5>T3 Pro 5G</h5>
-            <p>Snapdragon 7 Gen 3</p>
-            <p class="price">₹18,999 <span class="old-price">₹29,999</span></p>
-          </div>
-          <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/u/s/u/-original-imagwqkhc2xvsfhf.jpeg" alt="Vivo T3 Pro">
-          <div class="offer-tag"><i class="fas fa-scissors"></i> Offer</div>
-        </div>
-      </div>
-  
-      <!-- Add more cards as needed... -->
-      
     </div>
   </div>
+</div>
+

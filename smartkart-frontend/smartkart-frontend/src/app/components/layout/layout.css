@@ -1,0 +1,209 @@
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .fancy-cart-icon:hover .cart-icon-wrapper {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #e3f2fd, #ffffff);
+  }
+  
+  .shadow-cart-icon {
+    transition: transform 0.3s ease;
+    color: #333;
+  }
+  
+  .fancy-cart-icon:hover .shadow-cart-icon {
+    transform: scale(1.2);
+    color: #0d6efd; /* Bootstrap primary */
+  }
+  
+  /* Glass badge style */
+  .glass-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background: rgba(220, 53, 69, 0.85); /* Bootstrap danger with transparency */
+    backdrop-filter: blur(5px);
+    color: white;
+    font-size: 0.75rem;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+  
+  /* Animation: subtle pop effect */
+  .pulse {
+    animation: pulseBadge 0.6s ease-in-out;
+  }
+  
+  @keyframes pulseBadge {
+    0% {
+      transform: scale(0.6) translate(50%, -50%);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1) translate(50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  /* Navbar Styles */
+.navbar {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border-bottom: 1px solid #e4e4e4;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Brand Logo */
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand i {
+    color: #28a745;
+  }
+  
+  /* Nav Links */
+  .navbar-nav .nav-link {
+    color: #333;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: #28a745;
+    transform: translateY(-2px);
+  }
+  
+  /* Cart Icon Wrapper */
+  .cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Cart Icon */
+  .shadow-cart-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .shadow-cart-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Glassy Cart Badge */
+  .glass-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    padding: 3px 7px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255, 0, 0, 0.85);
+    border-radius: 999px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+    animation: bounce 1s infinite ease-in-out;
+  }
+  
+  /* Pulse Animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+  
+  /* Search Bar Enhancements */
+  .input-group .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.15rem rgba(40, 167, 69, 0.25);
+  }
+  
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-left: 0;
+    transition: background 0.3s ease;
+  }
+  
+  .input-group-text:hover {
+    background-color: #e2e6ea;
+  }
+
+
+  /* Centered search form */
+form.mx-auto.my-2 {
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 50px;
+    padding: 6px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Input field styling */
+  form .form-control {
+    border: none;
+    border-radius: 50px 0 0 50px;
+    padding-left: 20px;
+    font-size: 0.95rem;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  form .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.3);
+  }
+  
+  /* Search button icon */
+  form .input-group-text {
+    background: transparent;
+    border: none;
+    padding-right: 18px;
+    border-radius: 0 50px 50px 0;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  form .input-group-text i {
+    font-size: 1rem;
+    color: #6c757d;
+    transition: color 0.2s ease;
+  }
+  
+  /* Hover effect for icon */
+  form .input-group-text:hover i {
+    color: #28a745;
+    transform: scale(1.1);
+  }
+  
+  /* Optional: add glowing effect on hover */
+  form:hover {
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.1);
+  }
+  
+  
+  

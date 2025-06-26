@@ -1,0 +1,59 @@
+.payment-option {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .payment-option:hover {
+    transform: scale(1.02);
+  }
+  .payment-option input[type="radio"] {
+    display: none;
+  }
+  .payment-option.selected {
+    border: 2px solid #0d6efd;
+    background-color: #e7f1ff;
+  }
+
+  .alert {
+    transition: all 0.5s ease;
+    font-size: 1.2rem;
+  }
+
+  .alert-success {
+    font-size: 1.2rem;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+    background-color: #d4edda;
+    color: #155724;
+    animation: fadeInSlide 0.5s ease-out;
+  }
+  
+  .alert-success i {
+    font-size: 1.5rem;
+    color: #28a745;
+  }
+  
+  .btn-outline-success {
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  /* Optional animation */
+  @keyframes fadeInSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

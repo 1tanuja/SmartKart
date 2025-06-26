@@ -1,0 +1,128 @@
+/* body {
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    background-color: #fff;
+  }
+  
+  label {
+    font-weight: 500;
+  }
+
+  .card {
+    border-radius: 1rem;
+  }
+  
+  textarea, input {
+    border-radius: 0.5rem;
+  }
+  
+   */
+
+   /* Card and Section Styling */
+.card {
+    border-radius: 16px;
+    border: none;
+  }
+  
+  /* Heading Icons */
+  h4 i, h5 i {
+    margin-right: 8px;
+  }
+  
+  /* Form Labels */
+  .form-label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* Form Inputs */
+  .form-control, textarea {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s ease;
+  }
+  
+  .form-control:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.1);
+  }
+  
+  /* Address & Payment Section */
+  .form-check {
+    font-size: 15px;
+  }
+  
+  .form-check-input {
+    cursor: pointer;
+  }
+  
+  .form-check-label {
+    margin-left: 6px;
+  }
+  
+  /* Payment Radio Styling */
+  .payment-method {
+    padding: 10px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .payment-method:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Order Summary Image */
+  .img-thumbnail {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Confirm Order Button */
+  .btn-primary {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    border-radius: 12px;
+  }
+  
+  .btn-primary i {
+    margin-right: 6px;
+  }
+  
+  /* Divider */
+  hr {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  /* Total Price Styling */
+  .fw-bold span {
+    font-size: 17px;
+  }
+  
+
+  .card {
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+  
+  textarea.form-control {
+    resize: none;
+  }
+  
+  img.img-thumbnail {
+    border: none;
+    background-color: transparent;
+  }
+  
+  label.form-label {
+    font-weight: 500;
+    color: #444;
+  }
+  

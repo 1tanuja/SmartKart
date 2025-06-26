@@ -63,7 +63,7 @@
     <h2 class="text-center mb-4">Products For You</h2>
     <div class="row g-4">
       <div class="col-md-4" *ngFor="let product of userProducts">
-        <div class="product-card">
+        <div class="product-card" [routerLink]="['/product', product.id]">
           <div class="product-info">
             <h5> {{product.name}} </h5>
             <p class="price">

@@ -1,0 +1,125 @@
+
+
+<div class="container mt-5">
+    <h4 class="mb-4 text-center">Select a Payment Method</h4>
+
+    <!-- Success message -->
+<div *ngIf="paymentSuccess" class="alert alert-success text-center" role="alert" style="font-size: 1.2rem;">
+    <i class="fas fa-check-circle me-2"></i>
+  
+    <strong *ngIf="selectedMethod !== 'cod'">Payment Successful!</strong>
+    <strong *ngIf="selectedMethod === 'cod'">Order Confirmed!</strong>
+  
+    <br />
+    Thank you for your purchase 🎉
+  
+    <br /><br />
+    <button
+      *ngIf="selectedMethod !== 'cod'"
+      class="btn btn-outline-success"
+      (click)="goToOrders()"
+    >
+      View Orders
+    </button>
+  </div>
+  
+  
+    <form *ngIf="showForm" (ngSubmit)="onSubmit()" #paymentForm="ngForm">
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-3" *ngFor="let method of paymentMethods">
+          <label
+            class="card p-3 text-center payment-option"
+            [class.selected]="selectedMethod === method.value"
+            (click)="selectPayment(method.value)"
+          >
+            <input
+              type="radio"
+              name="payment"
+              [value]="method.value"
+              [(ngModel)]="selectedMethod"
+              hidden
+            />
+            <i [class]="method.icon + ' fa-2x mb-2'"></i>
+            <h6 class="mb-0">{{ method.label }}</h6>
+          </label>
+        </div>
+      </div>
+  
+      <!-- UPI FORM -->
+      <div class="mt-4" *ngIf="selectedMethod === 'upi'">
+        <h5>Enter UPI Details</h5>
+        <div class="mb-2">
+          <label>UPI ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="upiId"
+            [(ngModel)]="paymentData.upiId"
+            placeholder="example@upi"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- CREDIT CARD FORM -->
+      <div class="mt-4" *ngIf="selectedMethod === 'credit_card'">
+        <h5>Enter Card Details</h5>
+        <div class="mb-2">
+          <label>Card Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cardNumber"
+            [(ngModel)]="paymentData.cardNumber"
+            placeholder="1234 5678 9012 3456"
+            required
+          />
+        </div>
+        <div class="mb-2">
+          <label>Expiry Date</label>
+          <input
+            type="text"
+            class="form-control"
+            name="expiry"
+            [(ngModel)]="paymentData.expiry"
+            placeholder="MM/YY"
+            required
+          />
+        </div>
+        <div class="mb-2">
+          <label>CVV</label>
+          <input
+            type="password"
+            class="form-control"
+            name="cvv"
+            [(ngModel)]="paymentData.cvv"
+            placeholder="CVV"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- NET BANKING FORM -->
+      <div class="mt-4" *ngIf="selectedMethod === 'net_banking'">
+        <h5>Select Bank</h5>
+        <select
+          class="form-select"
+          name="bank"
+          [(ngModel)]="paymentData.bank"
+          required
+        >
+          <option value="">-- Select Bank --</option>
+          <option value="hdfc">HDFC</option>
+          <option value="sbi">SBI</option>
+          <option value="icici">ICICI</option>
+        </select>
+      </div>
+  
+      <!-- COD: no extra fields needed -->
+  
+      <div class="text-center mt-4" *ngIf="selectedMethod !== 'cod'">
+        <button type="submit" class="btn btn-primary">Continue to Payment</button>
+      </div>
+    </form>
+  </div>
+  

@@ -4,7 +4,7 @@ import { FileHandle } from "./file-handle.model";
 
 export class Category{
     id: number;
-    categoryName:string
+    categoryName:string;
     products: Products[];
     
 

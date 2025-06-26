@@ -13,4 +13,6 @@ public interface UserProductService {
     List<UserProductDto> getProductByCat(Long category);
 
     List<UserProductDto> searchProducts(String query);
+
+    UserProductDto getProductById(Long id);
 }

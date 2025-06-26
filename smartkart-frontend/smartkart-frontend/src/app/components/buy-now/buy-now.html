@@ -1,0 +1,108 @@
+<div class="container my-5">
+    <div class="row gy-4">
+      <!-- Left Column -->
+      <div class="col-lg-7">
+        <div class="card p-4 shadow-sm border-0 rounded-4">
+          <h4 class="text-primary mb-4">
+            <i class="fas fa-map-marker-alt me-2"></i>Delivery Address
+          </h4>
+  
+          <!-- Existing Address -->
+          <div *ngIf="savedAddress" class="form-check border rounded p-3 mb-3 bg-light">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="selectedAddress"
+              id="savedAddressRadio"
+              [checked]="!showNewAddressForm"
+              (change)="toggleNewAddressForm({ target: { checked: false } })"
+            />
+            <label class="form-check-label ms-2" for="savedAddressRadio">
+              <strong>{{ savedAddress.name }}</strong><br />
+              {{ savedAddress.location }}<br />
+              Phone: {{ savedAddress.phone }}
+            </label>
+          </div>
+  
+          <!-- Add New Address -->
+          <div class="form-check mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="addNew"
+              [checked]="showNewAddressForm"
+              (change)="toggleNewAddressForm($event)"
+            />
+            <label class="form-check-label ms-2" for="addNew">Add a new address</label>
+          </div>
+  
+          <!-- New Address Form -->
+          <div *ngIf="showNewAddressForm" class="pt-3 border-top">
+            <h5 class="mb-3 text-secondary">New Address</h5>
+            <form>
+              <div class="mb-3">
+                <label class="form-label"><i class="fas fa-user me-1"></i>Full Name</label>
+                <input type="text" class="form-control shadow-sm" name="fullName" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label"><i class="fas fa-phone me-1"></i>Phone Number</label>
+                <input type="tel" class="form-control shadow-sm" name="phoneNumber" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label"><i class="fas fa-location-dot me-1"></i>Address</label>
+                <textarea rows="3" class="form-control shadow-sm" name="fullAddress" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label"><i class="fas fa-thumbtack me-1"></i>Pin Code</label>
+                <input type="tel" class="form-control shadow-sm"  name="pinCode" required />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Column: Order Summary -->
+      <div class="col-lg-5">
+        <div class="card p-4 shadow-sm border-0 rounded-4 bg-white">
+          <h4 class="text-success mb-4">
+            <i class="fas fa-shopping-cart me-2"></i>Order Summary
+          </h4>
+  
+          <div *ngFor="let product of products" class="d-flex align-items-start mb-3 border-bottom pb-2">
+            <img
+              *ngIf="product.productimages?.length"
+              [src]="product.productimages[0].url"
+              class="img-thumbnail rounded-3 me-3"
+              style="width: 80px; height: 80px; object-fit: cover;"
+              alt="{{ product.name }}"
+            />
+            <div class="flex-grow-1">
+              <h6 class="mb-1">{{ product.name }}</h6>
+              <small class="text-muted">Qty: {{ product.quantity }}</small><br />
+              <strong>₹ {{ product.offerPrice }}</strong>
+            </div>
+          </div>
+  
+          <hr />
+          <div class="d-flex justify-content-between mb-2">
+            <span>Product Price</span>
+            <span>₹ {{ totalPrice }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Delivery</span>
+            <span class="text-success">Free</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>₹ {{ totalPrice }}</span>
+          </div>
+  
+          <button class="btn btn-primary w-100 mt-4 py-2 rounded-3 shadow-sm" (click)="placeOrder()">
+            <i class="fas fa-check-circle me-2"></i> Confirm Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -2,6 +2,7 @@ package com.smartkart.smartkart_backend.service.serviceImpl;
 
 import com.smartkart.smartkart_backend.dto.UserProductDto;
 import com.smartkart.smartkart_backend.model.Product;
+import com.smartkart.smartkart_backend.model.User;
 import com.smartkart.smartkart_backend.repository.ProductRepository;
 import com.smartkart.smartkart_backend.service.UserProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class UserProductServiceImpl implements UserProductService {
     public List<UserProductDto> searchProducts(String query) {
         List<Product> products=productRepo.searchByName(query);
         return products.stream().map(this::mapToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserProductDto getProductById(Long id) {
+        Product product=productRepo.findById(id).get();
+        return mapToDto(product);
     }
 
     public UserProductDto mapToDto(Product product){

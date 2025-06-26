@@ -43,5 +43,12 @@ export class UserProductService {
             withCredentials:true
         });
       }
+
+    getProductById(productId:number):Observable<UserProduct>{
+      return this.http.get<UserProduct>(`${this.url}/getProductById/${productId}`,{
+        withCredentials:true
+      });
+
+    }  
   
 }

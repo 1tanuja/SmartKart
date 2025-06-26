@@ -43,7 +43,8 @@ export class Login{
     console.log("Login Clicked..");
     this.userServices.loginUser(this.loginData).subscribe((res:any) =>{
       localStorage.setItem('logData',res.token);
-      localStorage.setItem('role',res.role)
+      localStorage.setItem('role',res.role);
+      localStorage.setItem('userId',res.id);
       console.log(res);
       if(res.role == "USER"){
         alert("User Found, Login Successfully");

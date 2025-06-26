@@ -1,16 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold text-primary" href="#">
-        <i class="fas fa-leaf me-2"></i>MyApp
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold text-primary" >
+        <i class="fas fa-leaf me-2"></i>SmartKart
       </a>
   
+      <!-- Toggler for Mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
   
+      <!-- Collapsible Content -->
       <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Search Bar -->
         <form class="mx-auto my-2" style="width: 400px;" (submit)="onSearch()">
           <div class="input-group">
             <input
@@ -22,15 +26,17 @@
               name="search"
             />
             <span class="input-group-text bg-white border-start-0" style="cursor: pointer;"
-            [routerLink]="['/dashboard']"
-            [queryParams]="{ search: searchTerm }">
-            <i class="fas fa-search text-muted"></i>
+                  [routerLink]="['/dashboard']"
+                  [queryParams]="{ search: searchTerm }">
+              <i class="fas fa-search text-muted"></i>
             </span>
           </div>
         </form>
-        <ul class="navbar-nav ms-auto">
+  
+        <!-- Navigation Links -->
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/dashboard">
+            <a class="nav-link active" routerLink="/dashboard">
               <i class="fas fa-home me-1"></i>Home
             </a>
           </li>
@@ -49,20 +55,32 @@
               <i class="fas fa-envelope me-1"></i>Contact
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/cart">
-              <i class="fas fa-shopping-cart me-1"></i>Cart
+  
+          <!-- Cart Icon with Count -->
+          <li class="nav-item position-relative">
+            <a class="nav-link fancy-cart-icon d-flex align-items-center justify-content-center"
+               routerLink="/cart"
+               title="View your cart">
+              <div class="cart-icon-wrapper">
+                <i class="fas fa-shopping-cart fa-lg text-dark shadow-cart-icon"></i>
+                <span *ngIf="cartCount > 0" class="glass-badge pulse">
+                  {{ cartCount }}
+                </span>
+              </div>
             </a>
           </li>
+  
+          <!-- Logout -->
           <li class="nav-item">
-            <a class="nav-link" href="#" (click)="onLogOut()">
-            <i class="fas fa-sign-out-alt me-2"></i>Logout
+            <a class="nav-link text-danger" href="#" (click)="onLogOut()">
+              <i class="fas fa-sign-out-alt me-2"></i>Logout
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  
   
   <router-outlet></router-outlet>
   
