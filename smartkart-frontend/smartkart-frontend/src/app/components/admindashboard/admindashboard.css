@@ -1,12 +1,181 @@
-.card-title {
-    font-weight: 600;
-  }
-  
-  .card h3 {
-    margin: 0;
-  }
-  
-  .card i {
-    opacity: 0.7;
-  }
-  
+.container-fluid {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.card h5 {
+  font-size: 1.25rem;
+}
+
+.card .fs-2 i {
+  color: #0d6efd;
+}
+
+.badge {
+  padding: 0.35em 0.65em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.bg-success {
+  background-color: #198754 !important;
+  color: #fff !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.bg-primary {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+
+/* Whole dashboard background with gradient */
+.container-fluid {
+  background: linear-gradient(135deg, #f1f4f9, #dff1ff);
+  min-height: 100vh;
+  padding: 2rem 3rem;
+}
+
+/* Card styling */
+.card {
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Summary Card Icons */
+.card .fs-2 i {
+  color: #0d6efd;
+}
+
+/* Order Status Badges */
+.badge {
+  padding: 0.45em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.bg-success {
+  background-color: #198754 !important;
+  color: #fff !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.bg-primary {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+/* Optional table style tweaks */
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.container-fluid {
+  background: linear-gradient(135deg, #f3f4f6, #cfe0f3);
+  background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png');
+  background-size: 400px;
+}
+
+.summary-card {
+  position: relative;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.icon-box {
+  font-size: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.badge {
+  padding: 0.5em 0.75em;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+  color: black;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
+}
+
+.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+.chart-placeholder {
+  height: 300px;
+  background-color: #f8f9fa;
+  border: 2px dashed #ced4da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.chart-bg {
+  position: absolute;
+  width: 60%;
+  max-height: 80%;
+  opacity: 0.2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.overlay-text {
+  z-index: 2;
+  position: relative;
+  font-weight: 500;
+}
+
+.chart-container {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+apx-chart {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+
+

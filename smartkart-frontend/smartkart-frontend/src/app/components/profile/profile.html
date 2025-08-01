@@ -1,0 +1,41 @@
+<div class="container my-4" *ngIf="user">
+    <div class="card shadow-sm p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold text-primary">My Profile</h4>
+        <button class="btn btn-outline-danger" (click)="onLogOut()">Logout</button>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Name:</strong>  {{user.userName}} </p>
+          <p><strong>Email:</strong>  {{user.email}} </p>
+          <p><strong>Phone:</strong>  {{user.phoneNumber}} </p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Saved Address:</strong>  {{user.address}} </p>
+          <p><strong>Pin Code:</strong>  {{user.pinCode}} </p>
+        </div>
+      </div>
+  
+      <hr />
+  
+      <h5 class="mt-4">Recent Orders</h5>
+      <div class="border-bottom py-2" *ngIf="user.recentOrders">
+        <p>
+          Order #{{ user.recentOrders.orderId }} -
+          ₹{{ user.recentOrders.totalPrice }} -
+          <strong>{{ user.recentOrders.orderStatus }}</strong>
+        </p>
+        <p><strong>Order Date:</strong> {{ user.recentOrders.orderDate }}</p>
+        <p><strong>Products:</strong></p>
+        <ul>
+          <li *ngFor="let product of user.recentOrders.productNames">
+            {{ product }}
+          </li>
+        </ul>
+      </div>
+  
+      <a class="btn btn-outline-primary mt-3" (click)="viewOrders()">View All Orders</a>
+    </div>
+  </div>
+  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Category, Products } from '../../model/product.model';
 import { ProductService } from '../../service/product-service';
@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FileHandle } from '../../model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +44,28 @@ export class Product implements OnInit{
   products:Products[] =[];
   
 
-  constructor(private productService: ProductService,private sanitizer:DomSanitizer,private route:ActivatedRoute){
+  constructor(private productService: ProductService,
+    private sanitizer:DomSanitizer,
+    private route:ActivatedRoute,
+    private cdr:ChangeDetectorRef,
+    private router:Router
+   ){
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.loadCurrentProducts();  // custom method
+      }
+    });
+  }
+
+  loadCurrentProducts(): void {
+    this.route.queryParams.subscribe(params => {
+      const categoryId = params['category'];
+      if (categoryId) {
+        this.loadProductsByCategory(categoryId);
+      } else {
+        this.loadProducts();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -176,6 +197,7 @@ export class Product implements OnInit{
               url: this.sanitizer.bypassSecurityTrustUrl(reader.result as string)
             }
           ]
+          this.cdr.detectChanges();
         }
       }
     );

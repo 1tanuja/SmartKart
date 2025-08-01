@@ -9,6 +9,9 @@ import { UserProducts } from './components/user-products/user-products';
 import { Cart } from './components/cart/cart';
 import { BuyNow } from './components/buy-now/buy-now';
 import { Payment } from './components/payment/payment';
+import { Profile } from './components/profile/profile';
+import { UserOrders } from './components/user-orders/user-orders';
+import { AdminOrderView } from './components/admin-order-view/admin-order-view';
 
 export const routes: Routes = [
    {
@@ -49,6 +52,14 @@ export const routes: Routes = [
             {
                 path:'payment',
                 component:Payment
+            },
+            {
+                path:'profile',
+                component:Profile
+            },
+            {
+                path:'userOrders',
+                component:UserOrders
             }
         ]
 
@@ -65,6 +76,10 @@ export const routes: Routes = [
          {
             path:'products',
             component:Product
+        },
+        {
+            path:'orders',
+            component:AdminOrderView
         }
          
      ]

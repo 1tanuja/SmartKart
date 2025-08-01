@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderService } from '../../service/order-service';
 
 @Component({
   selector: 'app-payment',
@@ -16,8 +17,10 @@ export class Payment {
   paymentSuccess: boolean = false;
   showForm: boolean = true;
 
-  constructor(private router:Router){
+  orderId:number=0;
 
+  constructor(private router:Router,private orderService:OrderService){
+    this.orderId = parseInt(localStorage.getItem('orderId') || '0'); 
   }
 
   paymentMethods = [
@@ -30,10 +33,21 @@ export class Payment {
   selectPayment(method: string) {
     this.selectedMethod = method;
     this.paymentData = {}; // clear form on new selection
+  
     if (method === 'cod') {
-      // Simulate instant order confirmation
-      this.paymentSuccess = true;
-      this.showForm = false;
+      const paymentStatus = 'Order Placed (Cash on Delivery)';
+  
+      // Immediately call backend to update status
+      this.orderService.updateOrderStatus(this.orderId, paymentStatus).subscribe({
+        next: () => {
+          this.paymentSuccess = true;
+          this.showForm = false;
+        },
+        error: (err) => {
+          console.error('❌ Failed to update COD status', err);
+          alert('Failed to place order. Please try again.');
+        }
+      });
     }
   }
 
@@ -42,9 +56,26 @@ export class Payment {
       alert('Please select a payment method.');
       return;
     }
-    this.paymentSuccess = true;
-    this.showForm = false; 
+    const statusMap: any = {
+      'credit_card': 'Order Placed(Paid via Credit Card)',
+      'upi': 'Order Placed(Paid via UPI)',
+      'net_banking': 'Order Placed(Paid via Net Banking)',
+      'cod': 'Order Placed (Cash on Delivery)'
+    };
+    const paymentStatus = statusMap[this.selectedMethod] || 'Payment Status Unknown';
+    this.orderService.updateOrderStatus(this.orderId, paymentStatus).subscribe({
+      next: () => {
+        this.paymentSuccess = true;
+        this.showForm = false;
+      },
+      error: (err) => {
+        console.error('Failed to update payment status', err);
+        alert('Payment failed. Please try again.');
+      }
+    });
   }
+
+  
 
   goToOrders() {
     this.router.navigate(['/orders']); // You can update path as needed

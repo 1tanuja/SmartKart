@@ -1,0 +1,10 @@
+.table th, .table td {
+    vertical-align: middle !important;
+  }
+  
+  .table img {
+    border: 1px solid #dee2e6;
+    padding: 2px;
+    background-color: #f8f9fa;
+  }
+  

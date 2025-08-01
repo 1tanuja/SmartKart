@@ -1,84 +1,126 @@
-<div class="container-fluid mt-4">
-    <h2 class="mb-4 fw-bold">
-      <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
-    </h2>
-  
-    <!-- Stat Cards -->
-    <div class="row g-4">
-      <div class="col-md-3">
-        <div class="card text-white bg-primary h-100 shadow">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h5 class="card-title">Total Products</h5>
-              <h3>120</h3>
-            </div>
-            <i class="fas fa-box fa-3x"></i>
-          </div>
+<!-- admin-dashboard.component.html -->
+<div class="container-fluid py-4 px-5 bg-light min-vh-100">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark">SmartKart Admin Dashboard</h2>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row g-4" *ngIf="summaryCards.length > 0">
+    <div class="col-md-3" *ngFor="let card of summaryCards">
+      <div
+        class="summary-card shadow d-flex justify-content-between align-items-center p-4 rounded-4"
+        [ngStyle]="{ background: card.gradient }"
+      >
+        <div>
+          <p class="text-white-50 small mb-1 text-uppercase fw-semibold">{{ card.title }}</p>
+          <h4 class="fw-bold text-white">{{ card.value }}</h4>
         </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card text-white bg-success h-100 shadow">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h5 class="card-title">Orders</h5>
-              <h3>85</h3>
-            </div>
-            <i class="fas fa-shopping-cart fa-3x"></i>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card text-white bg-warning h-100 shadow">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h5 class="card-title">Categories</h5>
-              <h3>10</h3>
-            </div>
-            <i class="fas fa-tags fa-3x"></i>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card text-white bg-danger h-100 shadow">
-          <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h5 class="card-title">Customers</h5>
-              <h3>45</h3>
-            </div>
-            <i class="fas fa-users fa-3x"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Charts or Tables Placeholder -->
-    <div class="row mt-5">
-      <div class="col-md-6">
-        <div class="card shadow">
-          <div class="card-header bg-dark text-white">
-            <i class="fas fa-chart-line me-2"></i>Sales Overview
-          </div>
-          <div class="card-body">
-            <p>Chart Placeholder (You can integrate with chart.js, ApexCharts, etc.)</p>
-            <div class="text-center text-muted">[Sales Chart Here]</div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-6">
-        <div class="card shadow">
-          <div class="card-header bg-dark text-white">
-            <i class="fas fa-clock me-2"></i>Recent Orders
-          </div>
-          <div class="card-body">
-            <p>Recent Orders Placeholder (You can replace with a dynamic table)</p>
-            <div class="text-center text-muted">[Recent Orders Table]</div>
-          </div>
+        <div class="icon-box">
+          <i class="fa {{ card.icon }}"></i>
         </div>
       </div>
     </div>
   </div>
   
+<!-- Charts Section: All 3 in One Row -->
+<div class="row my-5">
+  <!-- Chart 1: Weekly Sales -->
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card p-3 shadow-sm h-100">
+      <h6 class="mb-3 fw-bold">📈 Weekly Sales</h6>
+      <div class="chart-container">
+        <apx-chart
+          [series]="chart1options.series"
+          [chart]="chart1options.chart"
+          [colors]="chart1options.colors"
+          [yaxis]="chart1options.yaxis"
+          [dataLabels]="commonOptions.dataLabels"
+          [markers]="commonOptions.markers"
+          [stroke]="commonOptions.stroke"
+          [grid]="commonOptions.grid"
+          [xaxis]="commonOptions.xaxis"
+          [tooltip]="commonOptions.tooltip"
+        ></apx-chart>
+        <apx-chart
+          [series]="chart3options.series"
+          [chart]="chart3options.chart"
+          [colors]="chart3options.colors"
+          [yaxis]="chart3options.yaxis"
+          [dataLabels]="commonOptions.dataLabels"
+          [markers]="commonOptions.markers"
+          [stroke]="commonOptions.stroke"
+          [grid]="commonOptions.grid"
+          [xaxis]="commonOptions.xaxis"
+          [tooltip]="commonOptions.tooltip"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 2: Product Categories (Donut) -->
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card p-3 shadow-sm h-100">
+      <h6 class="mb-3 fw-bold">🧺 Product Categories</h6>
+      <div class="chart-container">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [fill]="chartOptions.fill"
+          [dataLabels]="chartOptions.dataLabels"
+          [responsive]="chartOptions.responsive"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 3: Budget vs Actual (Bar Chart) -->
+  <div class="col-lg-4 col-md-12 mb-4">
+    <div class="card p-3 shadow-sm h-100">
+      <h6 class="mb-3 fw-bold">📊 Budget vs Actual</h6>
+      <div class="chart-container">
+        <apx-chart
+          [series]="barChartOptions.seriess"
+          [chart]="barChartOptions.chart"
+          [stroke]="barChartOptions.stroke"
+          [dataLabels]="barChartOptions.dataLabels"
+          [plotOptions]="barChartOptions.plotOptions"
+          [xaxis]="barChartOptions.xaxis"
+          [colors]="barChartOptions.colors"
+          [fill]="barChartOptions.fill"
+          [yaxis]="barChartOptions.yaxis"
+          [legend]="barChartOptions.legend"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Recent Orders -->
+  <div class="card p-4 shadow-sm" *ngIf="recentOrders.length > 0">
+    <h6 class="mb-3">Recent Orders</h6>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of recentOrders">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.customerName }}</td>
+            <td>₹{{ order.amount }}</td>
+            <td>
+              <span [ngClass]="getStatusBadge(order.status)" class="badge">{{ order.status }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

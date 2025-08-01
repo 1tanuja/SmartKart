@@ -1,0 +1,83 @@
+<!-- order-management.component.html -->
+<div class="container my-5" *ngIf="orders.length > 0">
+  <h2 class="text-center text-dark fw-bold mb-4">📦 Admin Panel - Order Management</h2>
+
+  <div
+    class="border border-2 border-dark rounded-4 shadow-sm mb-5 p-4 bg-light"
+    *ngFor="let order of orders"
+  >
+    <!-- Order Header -->
+    <div class="d-flex justify-content-between align-items-start mb-3">
+      <div>
+        <h5 class="mb-1 fw-bold text-secondary">Order #{{ order.orderId }}</h5>
+        <p class="mb-1 text-muted">
+          Placed on: <strong>{{ order.orderDate }}</strong>
+        </p>
+        <p class="mb-0">
+          👤 <strong>User:</strong> {{ order.user.name }} (ID: {{ order.user.id }})
+        </p>
+        <p class="mb-0">
+          📧 <strong>Email:</strong> {{ order.user.email }}
+        </p>
+        <p class="mb-0">
+          🏠 <strong>Delivery Address:</strong>
+          {{ order.address.fullAddress }}, {{ order.address.pinCode }} <br />
+          ({{ order.address.fullName }}, {{ order.address.phoneNumber }})
+        </p>
+      </div>
+
+      <!-- Status Update -->
+      <div class="text-end">
+        <label class="form-label fw-semibold mb-1">Update Status:</label>
+        <div class="d-flex align-items-center gap-2">
+          <select class="form-select form-select-sm" style="width: 160px;"
+          [(ngModel)]="selectedStatus[order.orderId]">
+            <option [ngValue]="order.orderStatus" >{{ order.orderStatus }}</option>
+            <option *ngIf="order.orderStatus !== 'Order Placed'">Order Placed</option>
+            <option *ngIf="order.orderStatus !== 'Packed'">Packed</option>
+            <option *ngIf="order.orderStatus !== 'Shipped'">Shipped</option>
+            <option *ngIf="order.orderStatus !== 'Delivered'">Delivered</option>
+          </select>
+          <button class="btn btn-sm btn-success" (click)="updateStatus(order.orderId)">✔ Update</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Table -->
+    <div class="table-responsive">
+      <table class="table align-middle table-bordered bg-white rounded-3">
+        <thead class="table-light">
+          <tr class="text-center">
+            <th>Image</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price (₹)</th>
+            <th>Total (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let item of order.orderItems">
+            <td>
+              <img
+                *ngIf="item.productImage" 
+                [src]="item.productImage"
+                alt="{{ item.productName }}"
+                class="rounded-2"
+                style="width: 60px; height: 60px"
+              />
+            </td>
+            <td class="text-start">{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price | number : '1.0-0' }}</td>
+            <td><strong>{{ item.quantity * item.price | number : '1.0-0' }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total -->
+    <div class="text-end mt-3">
+      <h5 class="fw-bold">Grand Total: ₹{{ order.totalPrice | number : '1.0-0' }}</h5>
+    </div>
+  </div>
+</div>

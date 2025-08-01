@@ -71,11 +71,21 @@
           </li>
   
           <!-- Logout -->
-          <li class="nav-item">
-            <a class="nav-link text-danger" href="#" (click)="onLogOut()">
-              <i class="fas fa-sign-out-alt me-2"></i>Logout
+          <!-- Profile Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg me-1 text-dark"></i>
+              <span class="d-none d-lg-inline">Profile</span>
             </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="profileDropdown">
+              <li><a class="dropdown-item" routerLink="/profile"><i class="fas fa-user me-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/userOrders"><i class="fas fa-box-open me-2"></i>My Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#" (click)="onLogOut()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
           </li>
+
         </ul>
       </div>
     </div>

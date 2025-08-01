@@ -15,3 +15,25 @@ export class CheckOutProduct{
     this.productimages=[]
   }
 }
+
+export interface OrderProductDto{
+    productId: number;
+    productName: string;
+    quantity: number;
+    unitPrice: number;
+}
+
+
+export interface PlaceOrderDto{
+    userId: number;
+  addressId?: number;
+  fullName: string;
+  phoneNumber: string;
+  fullAddress: string;
+  pinCode: string;
+  newAddress: boolean;
+  fromCart: boolean;
+  totalPrice: number;
+  orderStatus: string;
+  products: OrderProductDto[];
+}

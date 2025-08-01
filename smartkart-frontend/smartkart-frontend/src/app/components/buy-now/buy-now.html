@@ -42,19 +42,19 @@
             <form>
               <div class="mb-3">
                 <label class="form-label"><i class="fas fa-user me-1"></i>Full Name</label>
-                <input type="text" class="form-control shadow-sm" name="fullName" required />
+                <input type="text" class="form-control shadow-sm" name="fullName" [(ngModel)]="fullName" required />
               </div>
               <div class="mb-3">
                 <label class="form-label"><i class="fas fa-phone me-1"></i>Phone Number</label>
-                <input type="tel" class="form-control shadow-sm" name="phoneNumber" required />
+                <input type="tel" class="form-control shadow-sm" name="phoneNumber" [(ngModel)]="phoneNumber" required />
               </div>
               <div class="mb-3">
                 <label class="form-label"><i class="fas fa-location-dot me-1"></i>Address</label>
-                <textarea rows="3" class="form-control shadow-sm" name="fullAddress" required></textarea>
+                <textarea rows="3" class="form-control shadow-sm" name="fullAddress" [(ngModel)]="fullAddress" required></textarea>
               </div>
               <div class="mb-3">
                 <label class="form-label"><i class="fas fa-thumbtack me-1"></i>Pin Code</label>
-                <input type="tel" class="form-control shadow-sm"  name="pinCode" required />
+                <input type="tel" class="form-control shadow-sm"  name="pinCode" [(ngModel)]="pinCode" required />
               </div>
             </form>
           </div>

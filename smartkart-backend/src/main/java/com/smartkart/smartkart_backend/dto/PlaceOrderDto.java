@@ -13,8 +13,8 @@ public class PlaceOrderDto {
     private String phoneNumber;
     private String fullAddress;
     private String pinCode;
-    private boolean isNewAddress;
-    private boolean isFromCart;
+    private boolean newAddress;
+    private boolean fromCart;
     private double totalPrice;
     private String orderStatus;
     private List<OrderProductDto> products;

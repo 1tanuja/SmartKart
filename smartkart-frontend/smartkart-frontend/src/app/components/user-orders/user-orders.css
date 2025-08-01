@@ -1,0 +1,56 @@
+/* Container */
+.container {
+    max-width: 900px;
+  }
+  
+  /* Card Header */
+  .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  /* Product Image */
+  .img-thumbnail {
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Product Title */
+  .card-body h6 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Price Text */
+  .card-body p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Total Price */
+  .card-body .text-end {
+    font-size: 16px;
+    color: #000;
+  }
+  
+  /* Badge Styling */
+  .badge {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 1rem;
+  }
+  
+  /* Shadow on hover */
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease-in-out;
+  }
+  
+  /* Section Title */
+  h3 {
+    font-weight: 700;
+    font-size: 24px;
+    color: #0d6efd;
+  }
+  
