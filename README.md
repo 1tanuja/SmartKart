@@ -2,9 +2,10 @@
 
 ## Technologies Used
 - Spring Boot
-- Spring Security
+- Authentication: JWT / Spring Security
 - JPA/Hibernate
 - PostgreSQL
+- Angular
 
 ## Features
 - User authentication & authorization using Spring Security
